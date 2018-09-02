@@ -14,10 +14,10 @@ print( 'Biorxiv example:')
 print( refid2bib(doi_biorxiv) )
 
 print( 'General example forward order:')
-print( refid2bib(doi_general, lastname_first=False ) )
+print( refid2bib(doi_general, short_name='custom_name_test', lastname_first=False ) )
 
 print( 'Arxiv example forward order:')
-print( refid2bib(doi_arxiv, lastname_first=False ) )
+print( refid2bib(doi_arxiv, short_name='custom_name_test', lastname_first=False ) )
 
 print( 'Biorxiv example forward order:')
-print( refid2bib(doi_biorxiv, lastname_first=False ) )
+print( refid2bib(doi_biorxiv, short_name='custom_name_test', lastname_first=False ) )

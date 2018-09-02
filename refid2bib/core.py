@@ -63,9 +63,9 @@ def doi_is_biorxiv( doi ):
 
 def replace_short_name(bibtex, short_name):
     if short_name is not None:
-        oldreg = re.search('^@.*\{(?P<old_name>.*),', bibtex)
+        oldreg = re.search('^@.*{(?P<old_name>.*),', bibtex)
         old_name = oldreg.groupdict()['old_name']
-        bibtex.replace( old_name, short_name )        
+        bibtex = bibtex.replace( old_name, short_name, 1)      
     return bibtex
 
 
