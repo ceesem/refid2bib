@@ -70,7 +70,6 @@ def replace_short_name(bibtex, short_name):
 
 
 def parse_authors( authors, lastname_first=True ):
-    print(type(authors))
     if isinstance(authors, list):
         author_list=authors
     elif isinstance(authors, str):
