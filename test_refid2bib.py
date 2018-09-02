@@ -12,3 +12,12 @@ print( refid_to_bib(doi_arxiv) )
 
 print( 'Biorxiv example:')
 print( refid_to_bib(doi_biorxiv) )
+
+print( 'General example forward order:')
+print( refid_to_bib(doi_general, lastname_first=False ) )
+
+print( 'Arxiv example forward order:')
+print( refid_to_bib(doi_arxiv, lastname_first=False ) )
+
+print( 'Biorxiv example forward order:')
+print( refid_to_bib(doi_biorxiv, lastname_first=False ) )
