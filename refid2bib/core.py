@@ -38,7 +38,7 @@ def get_doi_bibtex( doi, short_name=None, lastname_first = True ):
 
     is_biorxiv, biorxiv_id = doi_is_biorxiv( doi )
     if is_biorxiv:
-        bibtex = append_biorxiv_info( bibtex, biorxiv_id )  
+        bibtex = fix_biorxiv_info( bibtex, biorxiv_id )  
     return replace_short_name( bibtex, short_name )
 
 
@@ -73,9 +73,10 @@ def get_biorxiv_bibtex( biorxiv_id, short_name=None, lastname_first=True):
     return bibtex
 
 
-def append_biorxiv_info( bibtex, biorxiv_id ):
+def fix_biorxiv_info( bibtex, biorxiv_id ):
     biorxiv_info = "\teprinttype={{BiorXiv}},\n" \
                    "\teprint={{{bid}}}\n}}\n".format(bid=biorxiv_id)
+    bibtex = bibtex.replace('@article{','@misc{',1)
     return bibtex[:-2] + biorxiv_info
 
 
@@ -148,14 +149,15 @@ def format_bibtex_entry(short_name,
                         eprinttype,
                         eprint,
                         article_url):
-    bibtex_header = '@article{'
+    bibtex_header = '@misc{'
     bibtex_base = "{header}{short_name},\n" \
         "\tauthor = {{{authors}}},\n" \
         "\ttitle = {{{title}}},\n" \
-        "\tdate = {{{year}}},\n" \
+        "\tyear = {{{year}}},\n" \
         "\tmonth = {{{month}}},\n" \
         "\teprinttype = {{{eprinttype}}},\n" \
         "\teprint = {{{eprint}}},\n" \
+        "\thowpublished = {{{how_published}}},\n" \
         "\turl = {{{url}}}\n}}\n"
     bibtex = bibtex_base.format( header=bibtex_header,
                     short_name=short_name,
@@ -165,6 +167,7 @@ def format_bibtex_entry(short_name,
                     month=month,
                     eprinttype=eprinttype,
                     eprint=eprint,
+                    how_published=':'.join((eprinttype, eprint)),
                     url=article_url)
     return bibtex
 

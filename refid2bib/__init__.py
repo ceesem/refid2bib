@@ -8,7 +8,7 @@ bibtex_functions = {
     'pmid':get_pmid_bibtex}
 
 def refid2bib(ref, short_name=None, lastname_first=True, ref_type=None):
-    
+
     tests = {'doi':'^doi: ?|^https://doi.org/',
              'biorxiv':'^biorxiv ?|^biorxiv:',
              'arxiv': '^arxiv:|^https://arxiv.org/abs/',
