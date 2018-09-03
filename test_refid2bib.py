@@ -21,6 +21,11 @@ print( refid2bib(pmid) )
 print( 'PMC example:')
 print( refid2bib(pmc_id) )
 
+
+print( 'Specified example:')
+print( refid2bib(doi_general, ref_type='doi') )
+
+
 print( 'Arxiv example custom short name:')
 print( refid2bib(doi_general, short_name='my_custom_name' ) )
 
