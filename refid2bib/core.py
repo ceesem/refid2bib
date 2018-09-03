@@ -155,7 +155,7 @@ def format_bibtex_entry(short_name,
     bibtex_base = "{header}{short_name},\n" \
         "\tauthor = {{{authors}}},\n" \
         "\ttitle = {{{title}}},\n" \
-        "\tdate = {{{year}}},\n" \
+        "\tyear = {{{year}}},\n" \
         "\tmonth = {{{month}}},\n" \
         "\teprinttype = {{{eprinttype}}},\n" \
         "\teprint = {{{eprint}}},\n" \
