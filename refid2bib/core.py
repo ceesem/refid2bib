@@ -74,10 +74,12 @@ def get_biorxiv_bibtex( biorxiv_id, short_name=None, lastname_first=True):
 
 
 def fix_biorxiv_info( bibtex, biorxiv_id ):
-    biorxiv_info = "\teprinttype={{BiorXiv}},\n" \
-                   "\teprint={{{bid}}}\n}}\n".format(bid=biorxiv_id)
-    bibtex = bibtex.replace('@article{','@misc{',1)
-    return bibtex[:-2] + biorxiv_info
+    biorxiv_info = "\teprinttype={{bioRxiv}},\n" \
+                   "\teprint={{{bid}}},\n" \
+                   "\thowpublished={{{hp}}}\n}}\n".format(bid=biorxiv_id,
+                                                           hp='bioRxiv doi:10.1101/{}'.format(biorxiv_id))
+    bibtex = bibtex.replace('@article{','@online{',1)
+    return bibtex[:-3] + ',\n' + biorxiv_info
 
 
 def doi_is_biorxiv( doi ):
@@ -126,18 +128,18 @@ def parse_authors( authors, lastname_first=True ):
 
 
 month_map = {
-    1:'jan',
-    2:'feb',
-    3:'mar',
-    4:'apr',
-    5:'may',
-    6:'jun',
-    7:'jul',
-    8:'aug',
-    9:'sep',
-    10:'oct',
-    11:'nov',
-    12:'dec'
+    1:'Jan',
+    2:'Feb',
+    3:'Mar',
+    4:'Apr',
+    5:'May',
+    6:'Jun',
+    7:'Jul',
+    8:'Aug',
+    9:'Sep',
+    10:'Oct',
+    11:'Nov',
+    12:'Dec'
     }
 
 
@@ -149,11 +151,11 @@ def format_bibtex_entry(short_name,
                         eprinttype,
                         eprint,
                         article_url):
-    bibtex_header = '@misc{'
+    bibtex_header = '@online{'
     bibtex_base = "{header}{short_name},\n" \
         "\tauthor = {{{authors}}},\n" \
         "\ttitle = {{{title}}},\n" \
-        "\tyear = {{{year}}},\n" \
+        "\tdate = {{{year}}},\n" \
         "\tmonth = {{{month}}},\n" \
         "\teprinttype = {{{eprinttype}}},\n" \
         "\teprint = {{{eprint}}},\n" \
