@@ -71,8 +71,10 @@ Note that the custom name and author name order options are not yet implemented 
 
 ## Format Detection
 
+Case does not matter for any reference.
+
 _DOI:_
-    A doi needs to either start with `https://doi.org/` or have a leading `doi: ` (with or without the space). The id is taken to be everything after the slash of the URL or the space/colon. Case does not matter. For example,`doi: 10.1126/science.1260088` or `https://doi.org/10.1126/science.1260088`.
+    A doi needs to either start with `https://doi.org/` or have a leading `doi: ` (with or without the space). The id is taken to be everything after the slash of the URL or the space/colon. For example,`doi: 10.1126/science.1260088` or `https://doi.org/10.1126/science.1260088`.
 
 _Biorxiv:_
     Biorxiv entries are detected if they start with a `biorxiv: ` (with or without the space) or have a DOI that corresponds to Biorxiv (i.e. a CSHL 10.1101 prefix and a purely numeric suffix). This mode adds eprint and eprinttype entries to the bibtex output, similar to ArXiv entries. For example, `biorxiv:376830` or `https://doi.org/10.1101/376830`.
