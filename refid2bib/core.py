@@ -5,6 +5,23 @@ import feedparser
 from nameparser import HumanName
 
 
+pmid_url='https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/?ids={};format=json'
+def pmid_formatter( pmid, pmid_base=pmid_url):
+    return pmid_base.format(pmid)
+
+
+def get_pmid_doi( pmid ):
+    data = requests.get( pmid_formatter(pmid) )
+    data.raise_for_status()
+    data_dict = json.loads(data.text)
+    return data_dict['records'][0]['doi']
+
+
+def get_pmid_bibtex( pmid, short_name=None, lastname_first=True ):
+    doi = get_pmid_doi(pmid)
+    return get_doi_bibtex( doi, short_name=short_name, lastname_first=lastname_first )
+
+
 doi_url='http://dx.doi.org'
 def doi_formatter( doi, doi_base=doi_url ):
     return '/'.join((doi_base,doi))
@@ -14,9 +31,14 @@ def get_doi_bibtex( doi, short_name=None, lastname_first = True ):
     #To do, better exception handling on the request
     header={'Accept': 'application/x-bibtex'}
     data=requests.get(doi_formatter(doi), headers=header)
+    data.raise_for_status()
     bibtex = data.text + "\n"
     if lastname_first:
         bibtex = invert_author_names( bibtex )
+
+    is_biorxiv, biorxiv_id = doi_is_biorxiv( doi )
+    if is_biorxiv:
+        bibtex = append_biorxiv_info( bibtex, biorxiv_id )  
     return replace_short_name( bibtex, short_name )
 
 
@@ -32,7 +54,10 @@ def get_arxiv_bibtex( arxiv_number, short_name=None, lastname_first=True):
     params={'id_list':arxiv_number}
     atom_data=requests.get(arxiv_url, params=params)
     data=feedparser.parse(atom_data.text)
-    bibtex = parse_arxiv_bibtex( data, lastname_first=lastname_first )
+    if 'id' in data['entries'][0]:
+        bibtex = parse_arxiv_bibtex( data, lastname_first=lastname_first )
+    else:
+        raise Exception('Arxiv ID not found')
     return replace_short_name(bibtex, short_name)
 
 
@@ -45,10 +70,13 @@ def get_biorxiv_bibtex( biorxiv_id, short_name=None, lastname_first=True):
     bibtex = get_doi_bibtex( biorxiv_doi_formatter(biorxiv_id),
                              short_name=short_name,
                              lastname_first=lastname_first )
+    return bibtex
+
+
+def append_biorxiv_info( bibtex, biorxiv_id ):
     biorxiv_info = "\teprinttype={{BiorXiv}},\n" \
                    "\teprint={{{bid}}}\n}}\n".format(bid=biorxiv_id)
-    bibtex = bibtex[:-2] + biorxiv_info
-    return bibtex
+    return bibtex[:-2] + biorxiv_info
 
 
 def doi_is_biorxiv( doi ):
@@ -110,6 +138,7 @@ month_map = {
     11:'nov',
     12:'dec'
     }
+
 
 def format_bibtex_entry(short_name,
                         authors,
