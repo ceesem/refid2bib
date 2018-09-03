@@ -1,6 +1,6 @@
 # refid2bib
 
-A simple tool get get bibtex entries based on a variety of common academic ids. It's not the only such thing out there (I was largely inspired by [doi2bib](https://doi.org/10.1101/407338)), but I wanted something that could handle [BiorXiv](https://www.biorxiv.org) citations in a manner that was parallel with [ArXiv](https://www.arxiv.org) citations.
+A simple tool get get bibtex entries based on a variety of common academic ids. It's not the only such thing out there (I was largely inspired by [doi2bib](https://www.doi2bib.org)), but I wanted something that could handle [BiorXiv](https://www.biorxiv.org) citations in a manner that was parallel with [ArXiv](https://www.arxiv.org) citations.
 
 ## How to use:
 
