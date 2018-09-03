@@ -4,7 +4,7 @@ A simple tool get get bibtex entries based on a variety of common academic ids. 
 
 ## How to use:
 
-##### From a python console/notebook:
+### From a python console/notebook:
 
 There's only one function to use, `refid2bib`, which will attempt to intuit your request. It can handle DOIs, Arxiv Ids, Pubmed ids, PMC ids, and Biorxiv ids. See `test_refid2bib.py` for various examples.
 
@@ -59,7 +59,7 @@ This returns the same thing, but now the author line is:
 
 ```
 
-##### From the command line:
+### From the command line:
 
 `refid2bib` can be run as a function with a reference passed as an argument like so:
 
@@ -69,8 +69,7 @@ python -m refid2bib https://doi.org/10.1101/406314
 
 Note that the custom name and author name order options are not yet implemented in the command line version.
 
-##### Format Detection
-
+## Format Detection
 
 _DOI:_
     A doi needs to either start with `https://doi.org/` or have a leading `doi: ` (with or without the space). The id is taken to be everything after the slash of the URL or the space/colon. Case does not matter. For example,`doi: 10.1126/science.1260088` or `https://doi.org/10.1126/science.1260088`.
