@@ -56,7 +56,6 @@ print(bibtex)
 This returns the same thing, but now the author line is:
 ```
     author = {F. Chen and P. W. Tillberg and E. S. Boyden},
-
 ```
 
 ### From the command line:
@@ -83,4 +82,4 @@ _ArXiv:_
     Arxiv entries are detected if they start with `arxiv:` (no space) or from the URL directly `https://arxiv.org/abs/`. For example, `arXiv:1801.04381` or `https://arxiv.org/abs/1801.04381`.
 
 _Pubmed:_
-    Either pubmed ids or PMC ids will work, either from `pmid: ` (with or without space) or `PMC` (no space). For example, `PMID: 25056931` or `PMC3711719`.
+    Either pubmed ids or PMC ids will work, either from `pmid: ` (with or without space) or `PMC` (no space) respectively. For example, `PMID: 25056931` or `PMC3711719`.
