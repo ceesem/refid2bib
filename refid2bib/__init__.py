@@ -9,9 +9,9 @@ bibtex_functions = {
 
 def refid2bib(ref, short_name=None, lastname_first=True, ref_type=None):
 
-    tests = {'doi':'^doi: ?|^https://doi.org/',
+    tests = {'doi':'^doi: ?|^https?://doi.org/|^https?://dx.doi.org/',
              'biorxiv':'^biorxiv ?|^biorxiv:',
-             'arxiv': '^arxiv:|^https://arxiv.org/abs/',
+             'arxiv': '^arxiv:|^https?://arxiv.org/abs/',
              'pmid': '^pmid: ?|^(?=pmc\d*)',
     }
     
