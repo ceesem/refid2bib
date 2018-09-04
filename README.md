@@ -1,6 +1,6 @@
 # refid2bib
 
-A simple tool get get bibtex entries based on a variety of common academic ids. It's not the only such thing out there (I was largely inspired by [doi2bib](https://www.doi2bib.org)), but I wanted something that could handle [BiorXiv](https://www.biorxiv.org) citations in a manner that was parallel with [ArXiv](https://www.arxiv.org) citations.
+A simple tool get get bibtex entries based on a variety of common academic ids. It's not the only such thing out there (I was largely inspired by [doi2bib](https://www.doi2bib.org)), but I wanted something that could handle [Biorxiv](https://www.biorxiv.org) citations in a manner that was parallel with [arXiv](https://www.arxiv.org) citations.
 
 ## How to use:
 
@@ -76,10 +76,10 @@ _DOI:_
     A doi needs to either start with `https://doi.org/` or have a leading `doi: ` (with or without the space). The id is taken to be everything after the slash of the URL or the space/colon. For example,`doi: 10.1126/science.1260088` or `https://doi.org/10.1126/science.1260088`.
 
 _Biorxiv:_
-    Biorxiv entries are detected if they start with a `biorxiv: ` (with or without the space) or have a DOI that corresponds to Biorxiv (i.e. a CSHL 10.1101 prefix and a purely numeric suffix). This mode adds eprint and eprinttype entries to the bibtex output, similar to ArXiv entries. For example, `biorxiv:376830` or `https://doi.org/10.1101/376830`.
+    Biorxiv entries are detected if they start with a `biorxiv: ` (with or without the space) or have a DOI that corresponds to Biorxiv (i.e. a CSHL 10.1101 prefix and a purely numeric suffix). This mode adds eprint and eprinttype entries to the bibtex output, similar to Arxiv entries. For example, `biorxiv:376830` or `https://doi.org/10.1101/376830`. These are returned as `@online` types, not articles.
 
 _ArXiv:_
-    Arxiv entries are detected if they start with `arxiv:` (no space) or from the URL directly `https://arxiv.org/abs/`. For example, `arXiv:1801.04381` or `https://arxiv.org/abs/1801.04381`.
+    Arxiv entries are detected if they start with `arxiv:` (no space) or from the URL directly `https://arxiv.org/abs/`. For example, `arXiv:1801.04381` or `https://arxiv.org/abs/1801.04381`. These are returned as `@online` types, not articles.
 
 _Pubmed:_
     Either pubmed ids or PMC ids will work, either from `pmid: ` (with or without space) or `PMC` (no space) respectively. For example, `PMID: 25056931` or `PMC3711719`.
