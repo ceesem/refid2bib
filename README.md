@@ -2,6 +2,14 @@
 
 A simple tool get get bibtex entries based on a variety of common academic ids. It's not the only such thing out there (I was largely inspired by [doi2bib](https://www.doi2bib.org)), but I wanted something that could handle [Biorxiv](https://www.biorxiv.org) citations in a manner that was parallel with [arXiv](https://www.arxiv.org) citations.
 
+## How to install:
+
+If you have pip installed, you can install from this repository with:
+```
+pip install git+https://github.com/ceesem/refid2bib.git
+```
+which will automatically bring in the (few) dependencies.
+
 ## How to use:
 
 ### From a python console/notebook:
@@ -60,10 +68,38 @@ This returns the same thing, but now the author line is:
 
 ### From the command line:
 
-`refid2bib` can be run as a function with a reference passed as an argument like so:
+`refid2bib` can be run as a standalone command using the wrapper script
+included in the pip install, or as a function with the reference passed as an
+argument like so:
 
 ```
-python -m refid2bib https://doi.org/10.1101/406314
+$ refid2bib doi:10.1038/287795a0
+@article{N_sslein_Volhard_1980,
+	doi = {10.1038/287795a0},
+	url = {https://doi.org/10.1038%2F287795a0},
+	year = 1980,
+	month = {oct},
+	publisher = {Springer Science and Business Media {LLC}},
+	volume = {287},
+	number = {5785},
+	pages = {795--801},
+	author = {NÃ¼sslein-Volhard, Christiane and Wieschaus, Eric},
+	title = {Mutations affecting segment number and polarity in Drosophila},
+	journal = {Nature}
+}
+$ python -m refid2bib https://doi.org/10.1101/406314
+@online{Baniaga_2018,
+	doi = {10.1101/406314},
+	url = {https://doi.org/10.1101%2F406314},
+	year = 2018,
+	month = {sep},
+	publisher = {Cold Spring Harbor Laboratory},
+	author = {Baniaga, Anthony E. and Marx, Hannah E. and Arrigo, Nils and Barker, Michael S.},
+	title = {Polyploid plants have faster rates of multivariate climatic niche evolution than their diploid relatives},
+	eprinttype={bioRxiv},
+	eprint={406314},
+	howpublished={bioRxiv doi:10.1101/406314}
+}
 ```
 
 Note that the custom name and author name order options are not yet implemented in the command line version.
