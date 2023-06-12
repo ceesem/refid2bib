@@ -6,5 +6,11 @@ setup(
     author='Casey Schneider-Mizell',
     author_email='caseysm@gmail.com',
     description='Package to get bibtex from various reference ids',
-    packages=setuptools.find_packages()
-    )
+    packages=setuptools.find_packages(),
+    install_requires=[
+        'feedparser',
+        'nameparser',
+        'requests'
+    ],
+    scripts=['cli/refid2bib']
+)
